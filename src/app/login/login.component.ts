@@ -9,24 +9,40 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  formGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(4)]]
-  });
+  user = {
+  email: '',
+  password: '',
+};
+  // formGroup = this.fb.group({
+  //   email: ['', [Validators.required, Validators.email]],
+  //   password: ['', [Validators.required, Validators.minLength(4)]]
+  // });
 
   error: boolean;
 
   constructor(private loginService: LoginService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.formGroup);
+    // console.log(this.formGroup);
   }
   login() {
-    const user = {
-      email: this.formGroup.get('email').value,
-      password: this.formGroup.get('password').value
-    };
-    this.loginService.login(user)
+    // const user = {
+    //   email: this.formGroup.get('email').value,
+    //   password: this.formGroup.get('password').value
+    // };
+    // this.loginService.login(user)
+    //   .pipe(
+    //     filter(result => !!result.user)
+    //   ).subscribe({
+    //     next: () => {
+    //       this.router.navigate(['/posts']);
+    //       this.error = false;
+    //     },
+    //     error: () => {
+    //       this.error = true;
+    //     }
+    //   });
+    this.loginService.login(this.user)
       .pipe(
         filter(result => !!result.user)
       ).subscribe({
@@ -38,6 +54,5 @@ export class LoginComponent implements OnInit {
           this.error = true;
         }
       });
-
   }
 }
