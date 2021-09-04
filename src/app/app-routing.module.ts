@@ -1,10 +1,11 @@
+import { AuthGuard } from './auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
   {
-    path: '',  // TODO: 非空字串路由放上面，js 由上往下讀
+    path: 'login',  // TODO: 非空字串路由放上面，js 由上往下讀
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
   },
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       },
     ]
   },
+  // {path: '**', redirectTo: '/', pathMatch: 'full'}
 ];
 
 @NgModule({

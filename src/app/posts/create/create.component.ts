@@ -1,5 +1,8 @@
+import { Router } from '@angular/router';
+import { PostService } from './../../post.service';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { CreateArticle } from 'src/app/interfaces/create-article';
 
 @Component({
   templateUrl: './create.component.html',
@@ -23,7 +26,7 @@ export class CreateComponent implements OnInit {
     return this.formGroup.get('tags') as FormArray;
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private postService: PostService, private router: Router) { }
 
   ngOnInit(): void {
     console.log(this.formGroup);
@@ -35,5 +38,15 @@ export class CreateComponent implements OnInit {
 
   removeTag(index: number) {
     this.tags.removeAt(index);
+  }
+
+  create() {
+    const data: CreateArticle = {
+      ...this.formGroup.value, tagList: [...this.formGroup.value.tags]
+    };
+    this.postService.createArticle(data).subscribe(() => {
+      alert('新增成功');
+      this.router.navigateByUrl('/');
+    })
   }
 }

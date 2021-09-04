@@ -46,7 +46,8 @@ export class LoginComponent implements OnInit {
       .pipe(
         filter(result => !!result.user)
       ).subscribe({
-        next: () => {
+        next: (result) => {
+          localStorage.setItem('token', result.user.token);
           this.router.navigate(['/posts']);
           this.error = false;
         },

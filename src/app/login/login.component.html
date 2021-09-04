@@ -43,10 +43,10 @@
               name="email" class="form-control form-control-lg" type="text" placeholder="Email">
 
               <div *ngIf="tEmail.invalid">
-                <span *ngIf="tEmail.errors.required">
+                <span *ngIf="tEmail.touched && tEmail.errors.required">
                   Email 必填
                 </span>
-                <span *ngIf="tEmail.errors.email">
+                <span *ngIf="tEmail.touched && tEmail.errors.email">
                   Email 格式不正確
                 </span>
               </div>
@@ -61,10 +61,10 @@
             [(ngModel)]="user.password" name="password" class="form-control form-control-lg" type="password" placeholder="Password" autocomplete="on">
 
             <div *ngIf="tPassword.invalid">
-              <span *ngIf="tPassword.errors.required">
+              <span *ngIf="tPassword.touched && tPassword.errors.required">
                 密碼必填
               </span>
-              <span *ngIf="tPassword.errors.minlength">
+              <span *ngIf="tPassword.touched && tPassword.errors.minlength">
                 密碼太短 ( {{tPassword.errors.minlength.actualLength}} / {{tPassword.errors.minlength.requiredLength}})
               </span>
             </div>
