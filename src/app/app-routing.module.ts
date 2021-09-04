@@ -4,7 +4,7 @@ import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
   {
-    path: 'login',  // TODO: 非空字串路由放上面，js 由上往下讀
+    path: '',  // TODO: 非空字串路由放上面，js 由上往下讀
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
   },
   {
