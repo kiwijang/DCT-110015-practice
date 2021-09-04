@@ -11,7 +11,7 @@ import { LayoutComponent } from './layout.component';
   ],
   imports: [
     CommonModule,
-    RouterModule //TODO: ?router-outlet
+    RouterModule, //TODO: ?router-outlet
   ]
 })
 export class LayoutModule { }
