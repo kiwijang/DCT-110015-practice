@@ -8,14 +8,20 @@
         <form [formGroup]="formGroup">
           <fieldset class="form-group">
             <input formControlName="email" class="form-control form-control-lg" type="text" placeholder="Email">
+            <div *ngIf="formGroup.get('email').touched && formGroup.get('email').errors && formGroup.get('email').errors.required">*信箱必填</div>
+            <div *ngIf="formGroup.get('email').touched && formGroup.get('email').errors && formGroup.get('email').errors.email">*信箱格式有誤</div>
           </fieldset>
           <fieldset class="form-group">
-            <input formControlName="password" class="form-control form-control-lg" type="password" placeholder="Password">
+            <input formControlName="password" class="form-control form-control-lg" type="password" placeholder="Password" autocomplete="false">
+            <div *ngIf="formGroup.get('password').touched && formGroup.get('password').errors && formGroup.get('password').errors.required">*密碼必填</div>
+            <div *ngIf="formGroup.get('password').touched && formGroup.get('password').errors && formGroup.get('password').errors.minlength">*密碼長度有誤</div>
           </fieldset>
-          <button class="btn btn-lg btn-primary pull-xs-right" (click)="login()">
+          <button class="btn btn-lg btn-primary pull-xs-right" (click)="login()" [disabled]="!formGroup.valid">
             Sign in
           </button>
         </form>
+        <!-- {{formGroup.get('email').errors | json}}
+        {{formGroup.get('password').errors | json}} -->
         <div *ngIf="error">帳密有誤!</div>
       </div>
 

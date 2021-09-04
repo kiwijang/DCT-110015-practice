@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { filter, tap, merge } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   formGroup = this.fb.group({
-    email: ['demo@miniasp.com'],
-    password: ['123456']
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(4)]]
   });
 
   error: boolean;
@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    console.log(this.formGroup);
   }
   login() {
     const user = {
