@@ -1,0 +1,80 @@
+<div class="editor-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 col-xs-12">
+        <form [formGroup]="formGroup">
+          <fieldset class="form-group">
+            <input
+              class="form-control form-control-lg"
+              type="text"
+              placeholder="Post Title"
+              formControlName="title"
+            />
+            <div
+              *ngIf="formGroup.get('title').touched && formGroup.get('title').errors && formGroup.get('title').errors.required"
+            >
+              *必填
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <textarea
+              class="form-control"
+              rows="3"
+              placeholder="Description"
+              formControlName="description"
+            ></textarea>
+          </fieldset>
+          <fieldset class="form-group">
+            <textarea
+              class="form-control"
+              rows="8"
+              placeholder="Post body"
+              formControlName="body"
+            ></textarea>
+            <div
+              *ngIf="formGroup.get('body').touched && formGroup.get('body').errors && formGroup.get('body').errors.required"
+            >
+              *必填
+            </div>
+            <div
+              *ngIf="formGroup.get('body').touched && formGroup.get('body').errors && formGroup.get('body').errors.minlength"
+            >
+              *長度有誤 (
+              {{formGroup.get('body').errors.minlength.actualLength}} /
+              {{formGroup.get('body').errors.minlength.requiredLength}})
+            </div>
+          </fieldset>
+          <fieldset class="form-group" formArrayName="tags">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Enter tags"
+              #tTag
+              (keydown.enter)="addTag(tTag.value); tTag.value = ''; $event.preventDefault()"
+            />
+            <div class="tag-list">
+              <!-- <input
+                *ngFor="let tag of tags.controls; let index = index"
+                [formControlName]="index"> -->
+
+              <span
+                class="label label-pill label-default"
+                *ngFor="let tag of tags.value; let index = index"
+              >
+                <i class="ion-close-round" (click)="removeTag(index)"></i> {{
+                tag }}</span
+              >
+            </div>
+          </fieldset>
+          <button
+            type="submit"
+            class="btn btn-lg btn-primary pull-xs-right"
+            [disabled]="formGroup.invalid"
+          >
+            Create Post
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

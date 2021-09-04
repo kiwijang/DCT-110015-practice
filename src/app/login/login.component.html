@@ -57,7 +57,7 @@
             #tPassword="ngModel"
             required
             minlength="4"
-            [(ngModel)]="user.password" name="password" class="form-control form-control-lg" type="password" placeholder="Password">
+            [(ngModel)]="user.password" name="password" class="form-control form-control-lg" type="password" placeholder="Password" autocomplete="on">
 
             <div *ngIf="tPassword.invalid">
               <span *ngIf="tPassword.errors.required">
