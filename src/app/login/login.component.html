@@ -32,7 +32,7 @@
 
       <div class="col-md-6 col-md-offset-3 col-xs-12">
         <h1 class="text-xs-center">Sign in</h1>
-
+        <!-- TODO: 待補 NgForm directive??-->
         <form  #tForm="ngForm" (ngSubmit)="login()">
           <fieldset class="form-group">
             <input
@@ -51,6 +51,7 @@
                 </span>
               </div>
           </fieldset>
+          <!-- TODO: Template referance 應用超酷，讓程式碼變短很多，驗證方式跟 html attribute 一樣! 密碼太短 actualLength requiredLength 用法很酷-->
           <fieldset class="form-group">
             <input
             #tInput
