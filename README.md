@@ -31,7 +31,7 @@ typescript                      4.3.5
 ```
 
 # 問題紀錄😯
-## Input elements should have autocomplete attributes -> Chrome console 會有警告
+## 📌Input elements should have autocomplete attributes -> Chrome console 會有警告
 https://stackoverflow.com/questions/54970352/input-elements-should-have-autocomplete-attributes
 
 ### Turning off Autocomplete
